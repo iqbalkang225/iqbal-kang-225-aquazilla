@@ -1,0 +1,14 @@
+{
+  "name": "iqbal-kang-225-aquazilla",
+  "version": "1.0.0",
+  "description": "aquazilla",
+  "main": "script.js",
+  "scripts": {
+    "compile:sass": "node-sass sass/main.scss styles.css -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^7.0.1"
+  }
+}

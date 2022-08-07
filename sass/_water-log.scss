@@ -1,0 +1,364 @@
+.log {
+  &--left {
+    height: 100vh;
+    grid-column: full-start / col-end 5;
+    padding: 3rem 0;
+    grid-template-rows: min-content 1fr min-content;
+    row-gap: 6rem;
+
+    display: grid;
+
+    @include respond(tab-land) {
+      grid-template-rows: min-content 240px min-content;
+    }
+
+    @include respond(tab-mid) {
+      grid-template-rows: min-content 200px min-content;
+    }
+
+    @include respond(tab-port) {
+      height: auto;
+      grid-column: full-start / full-end;
+      grid-template-rows: min-content 200px min-content;
+    }
+
+    @include respond(phone) {
+      grid-template-rows: min-content 150px min-content;
+    }
+  }
+
+  // User weight styles
+  &__weight-container {
+    text-align: center;
+    // border: 2px solid pink;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__weight-outline {
+    border: 2px solid $color-gray;
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+    margin-bottom: 3.6rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__weight-value {
+    color: $color-primary;
+    font-size: 2.2rem;
+    font-weight: 600;
+  }
+
+  &__weight-lbs {
+    font-size: 1.4rem;
+  }
+
+  &__slider {
+    appearance: none;
+    width: 50%;
+
+    &::-webkit-slider-runnable-track {
+      background: $color-gray;
+      height: 0.25rem;
+    }
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      height: 3.6rem;
+      border-radius: 1rem;
+      background: $color-gray;
+      width: 1.6rem;
+      transform: translateY(-50%);
+      box-shadow: 0 5px 6px rgba($color-gray, 0.5);
+      cursor: pointer;
+    }
+  }
+
+  // Water container styles
+
+  &__water-container {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__water-jug {
+    height: 20vw;
+    width: 20vw;
+    background: $color-white;
+    border-radius: 50%;
+    position: absolute;
+    top: 12%;
+    box-shadow: $box-shadow;
+    font-size: 2.4rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @include respond(tab-port) {
+      top: 11%;
+
+      height: 26vw;
+      width: 26vw;
+    }
+  }
+
+  &__water--drank {
+    color: $color-primary;
+  }
+
+  &__water--text {
+    margin-top: 0.5rem;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+  }
+
+  &__drop--sad {
+    position: absolute;
+    left: -16%;
+    top: 52%;
+
+    @include respond(phone) {
+      left: -13%;
+      top: 50%;
+    }
+
+    svg {
+      @include respond(phone) {
+        width: 15px;
+        height: 22px;
+      }
+    }
+  }
+
+  &__drop--happy {
+    position: absolute;
+    right: -16%;
+    top: 52%;
+
+    @include respond(phone) {
+      top: 50%;
+      right: -14%;
+    }
+
+    svg {
+      @include respond(phone) {
+        width: 15px;
+        height: 22px;
+      }
+    }
+  }
+
+  &__select-container {
+    height: 6rem;
+    width: 6rem;
+    background-color: $color-white;
+    border-radius: 50%;
+    position: absolute;
+    right: -20%;
+    bottom: 0;
+    box-shadow: $box-shadow;
+    color: $color-primary;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include respond(tab-land) {
+      right: -30%;
+    }
+
+    @include respond(tab-mid) {
+      right: -40%;
+    }
+
+    @include respond(tab-port) {
+      right: -20%;
+    }
+
+    @include respond(phone) {
+      right: -30%;
+    }
+  }
+
+  &__select-icon {
+    height: 3rem;
+    width: 3rem;
+    background-color: $color-white;
+    position: absolute;
+    bottom: -10%;
+    border-radius: 50%;
+    right: -10%;
+    font-size: 1.4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__add-container {
+    align-self: end;
+    justify-self: center;
+    width: 50%;
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 1fr 80% 1fr;
+
+    i {
+      color: $color-primary;
+      position: relative;
+      z-index: 100;
+    }
+
+    button {
+      background: none;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+      font-size: 1.2rem;
+    }
+
+    .active-cup {
+      background-color: $color-white;
+      padding: 1rem 2rem;
+      border-radius: 2rem;
+      font-size: 1.4rem;
+      color: $color-primary;
+      box-shadow: 0px 0px 5px rgba($color-gray, 0.25);
+    }
+  }
+
+  &__cups-container {
+    // overflow: hidden;
+  }
+
+  &__cups {
+    display: flex;
+    transition: all 0.2s linear;
+  }
+
+  &__cup-size {
+    flex: 1 0 33.3%;
+  }
+
+  &__popup-container {
+    width: 50vw;
+    height: 50vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $color-white;
+    border-radius: 2rem;
+    z-index: 2;
+    padding: 2rem;
+    font-size: 1.4rem;
+
+    display: none;
+  }
+
+  &__popup-title {
+    margin-bottom: 1rem;
+  }
+
+  &__popup-cups {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 3rem);
+    gap: 2rem;
+    margin-bottom: 1rem;
+    place-items: center;
+  }
+
+  &__popup-btns {
+    text-align: right;
+  }
+
+  &__popup-ok,
+  &__popup-cancel {
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    color: inherit;
+  }
+
+  &__popup-ok {
+    color: $color-primary;
+    margin-left: 1rem;
+  }
+
+  &__overlay {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+  }
+
+  &--right {
+    background: blue;
+    height: 100vh;
+
+    grid-column: col-start 6 / full-end;
+
+    @include respond(tab-port) {
+      grid-column: full-start / full-end;
+    }
+  }
+}
+
+// Water guage styles
+.guage {
+  width: 25vw;
+  // border: 2px solid red;
+
+  @include respond(tab-port) {
+    width: 31vw;
+  }
+
+  &__body {
+    height: 0;
+    padding-bottom: 50%;
+    border-top-left-radius: 100% 200%;
+    border-top-right-radius: 100% 200%;
+    background-color: $color-gray;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    width: 100%;
+    background-color: $color-primary;
+    position: absolute;
+    top: 100%;
+    transform-origin: top center;
+    transition: all 0.2s ease-in;
+  }
+
+  &__cover {
+    width: 95%;
+    background-color: $color-background;
+    height: 190%;
+    border-radius: 50%;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
