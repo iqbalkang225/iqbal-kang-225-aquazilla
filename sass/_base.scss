@@ -1,8 +1,18 @@
 // Variable
 $color-background: #eeeeee;
 $color-primary: #0094ff;
+$color-primary-light: #94cdf6;
 $color-gray: #6c6b6b;
+$color-gray-light: #bfbfbf;
+$color-gray-lighter: #d9d9d9;
 $color-white: #ffffff;
+$color-white-dark: #f0f0f0;
+$color-black: #000000;
+
+$font-weight-medium: 600;
+
+$padding-section: 5rem 0;
+
 $box-shadow: 0px 0px 10px 2px rgba($color-gray, 0.25);
 
 // phone - max-width: 600px;
@@ -13,36 +23,22 @@ $box-shadow: 0px 0px 10px 2px rgba($color-gray, 0.25);
 
 //big-desktop - min-width: 188px;
 
-@mixin respond($breakpoint) {
-  @if $breakpoint == phone {
-    @media (max-width: 37.5em) {
-      @content;
-    }
+@mixin respond($size) {
+  @media (min-width: $size) {
+    @content;
   }
+}
+@mixin d-flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+}
 
-  @if $breakpoint == tab-port {
-    @media (max-width: 45em) {
-      @content;
-    }
-  }
-
-  @if $breakpoint == tab-mid {
-    @media (max-width: 55em) {
-      @content;
-    }
-  }
-
-  @if $breakpoint == tab-land {
-    @media (max-width: 75em) {
-      @content;
-    }
-  }
-
-  @if $breakpoint == big-desktop {
-    @media (min-width: 112.5em) {
-      @content;
-    }
-  }
+@mixin circle($dimension) {
+  border-radius: 50%;
+  width: $dimension;
+  height: $dimension;
 }
 
 * {
@@ -53,21 +49,46 @@ $box-shadow: 0px 0px 10px 2px rgba($color-gray, 0.25);
 
 html {
   font-size: 62.5%;
-
-  @include respond(tab-port) {
-    font-size: 40%;
-  }
 }
 
 body {
   height: 100vh;
-  background: $color-background;
+  background: red;
   color: $color-gray;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-family: "Inter", sans-serif;
+}
 
-  display: grid;
-  grid-template-columns:
-    [full-start] 2rem [center-start] repeat(10, [col-start] 1fr [col-end])
-    [center-end] 2rem [full-end];
+.container {
+  width: 90vw;
+  margin: 0 auto;
+
+  @include respond(1020px) {
+    width: 85vw;
+  }
+}
+
+button {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+@keyframes wave {
+  50% {
+    left: -80%;
+    // bottom: -128%;
+  }
+}
+
+@keyframes bubble-up {
+  50% {
+    top: 70%;
+  }
+
+  30% {
+    opacity: 0;
+  }
 }
