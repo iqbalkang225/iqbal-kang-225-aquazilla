@@ -89,11 +89,7 @@ button {
 }
 
 @keyframes bubble-up {
-  50% {
-    top: 70%;
-  }
-
-  30% {
-    opacity: 0;
+  100% {
+    top: -20%;
   }
 }

@@ -58,21 +58,46 @@ const calcWaterTarget = function () {
   waterTargetEl.textContent = `/ ${waterTarget} ml`;
 };
 
-// Calculating water drank
-let waterDrank = 0;
-let upto = 0;
-let rotation = 0;
-let rise = 10;
-const calcWaterDrank = function (e) {
-  waterDrank += Number(e.target.dataset.size);
-  rotation += 180 / (waterTarget / Number(e.target.dataset.size));
-  rise += 100 / (waterTarget / Number(e.target.dataset.size));
-  waterWave1.style.top = `${100 - rise}%`;
-  waterWave2.style.top = `${100 - (rise - 5)}%`;
+const animateWater = function () {
   waterAnimateEl.classList.add("log__animate-water");
   waterAnimateEl.addEventListener("animationend", () => {
     waterAnimateEl.classList.remove("log__animate-water");
   });
+};
+
+let cups, cupsShadow, cupsImg, cupsSizeText;
+let selectedCup = 100;
+
+const selectCup = function () {
+  cups.forEach((cup, i) => {
+    cup.addEventListener("click", (e) => {
+      selectedCup = Number(cup.dataset.size);
+      cupsImg.forEach((img) => (img.style.transform = "translateY(0)"));
+      cupsShadow.forEach((shadow) => (shadow.style.opacity = "0"));
+      cupsSizeText.forEach((text) => (text.style.color = "#000"));
+      cupsImg[i].style.transform = "translateY(-10px)";
+      cupsShadow[i].style.opacity = "1";
+      cupsSizeText[i].style.color = "#00a9a5";
+    });
+  });
+  activeCupSpan.textContent = `${selectedCup} ml`;
+  activeCupImg.src = `./images/cup-${
+    initialSizes.includes(selectedCup) ? selectedCup : "customise"
+  }.svg`;
+  activeCup.dataset.size = selectedCup;
+};
+
+// Calculating water drank
+let waterDrank = 0;
+let upto = 0;
+let rotation = 0;
+let rise = 0;
+const calcWaterDrank = function (e) {
+  rotation = ((waterDrank / waterTarget) * 100 * 180) / 100;
+  rise = ((waterDrank / waterTarget) * 100 * 100) / 100;
+
+  waterWave1.style.top = `${100 - rise}%`;
+  waterWave2.style.top = `${100 - rise}%`;
 
   waterAnimateEl.textContent = `+${Number(
     e.target.dataset.size
@@ -83,22 +108,23 @@ const calcWaterDrank = function (e) {
   } else if (rise >= 50) {
     waterDrankEl.style.color = "#66cbc9";
     waterTargetEl.parentElement.nextElementSibling.style.color = "#ddd";
+  } else {
+    waterTargetEl.style.color = "#272727";
+    waterTargetEl.parentElement.nextElementSibling.style.color = "#272727";
   }
   if (waterDrank > waterTarget) {
     guageFill.style.transform = `rotate(${180}deg)`;
   } else {
     guageFill.style.transform = `rotate(${rotation}deg)`;
   }
-
-  let counts = setInterval(updated, 1);
-  function updated() {
-    waterDrankEl.textContent = `${upto++} `;
-    if (upto > waterDrank) {
-      clearInterval(counts);
-    }
-  }
+  waterDrankEl.textContent = `${waterDrank} `;
 };
-activeCup.addEventListener("click", calcWaterDrank);
+
+activeCup.addEventListener("click", (e) => {
+  waterDrank += selectedCup;
+  calcWaterDrank(e);
+  animateWater();
+});
 
 // Getting user weight
 let clicked = false;
@@ -141,22 +167,8 @@ const popupOkBtn = document.querySelector(".log__popup-btn--ok");
 const popupContainer = document.querySelector(".log__popup-container");
 const overlay = document.querySelector(".log__overlay");
 
-// const cupSizes = [
-//   "100",
-//   "125",
-//   "150",
-//   "175",
-//   "200",
-//   "300",
-//   "400",
-//   "500",
-//   "customise",
-// ];
 const cupSizes = [100, 125, 150, 175, 200, 300, 400, 500, "customise"];
 const initialSizes = [...cupSizes];
-
-let cups, cupsShadow, cupsImg, cupsSizeText;
-let selectedCup = 100;
 
 const createPopupCups = function () {
   cupsContainer.textContent = "";
@@ -177,23 +189,6 @@ const createPopupCups = function () {
   cupsShadow = document.querySelectorAll(".log__popup-shadow");
   cupsImg = document.querySelectorAll(".log__popup-cup img");
   cupsSizeText = document.querySelectorAll(".log__popup-cup p");
-};
-
-const selectCup = function () {
-  cups.forEach((cup, i) => {
-    cup.addEventListener("click", (e) => {
-      selectedCup = Number(cup.dataset.size);
-      cupsImg.forEach((img) => (img.style.transform = "translateY(0)"));
-      cupsShadow.forEach((shadow) => (shadow.style.opacity = "0"));
-      cupsSizeText.forEach((text) => (text.style.color = "#000"));
-      cupsImg[i].style.transform = "translateY(-10px)";
-      cupsShadow[i].style.opacity = "1";
-      cupsSizeText[i].style.color = "#00a9a5";
-    });
-  });
-  activeCupSpan.textContent = `${selectedCup} ml`;
-  activeCupImg.src = `./images/cup-${selectedCup}.svg`;
-  activeCup.dataset.size = selectedCup;
 };
 
 const openPopup = function (container) {
@@ -217,6 +212,7 @@ popupCancelBtn.addEventListener("click", (e) => {
 
 overlay.addEventListener("click", (e) => {
   closePopup(popupContainer);
+  closePopup(customCupContainer);
 });
 
 document.addEventListener("keydown", (e) => {
@@ -241,7 +237,9 @@ customOkBtn.addEventListener("click", (e) => {
   if (!cupSizes.includes(customValueEl.value && val))
     cupSizes.splice(cupSizes.length - 1, 0, val);
 
+  selectedCup = val;
   closePopup(customCupContainer);
+  closePopup(popupContainer);
   createPopupCups();
   selectCup();
   openPopup(popupContainer);
@@ -255,9 +253,7 @@ const displayFacts = function () {
   const dropletMessageEl = document.querySelector(".log__droplet-message");
   const totalFacts = Object.keys(waterFacts).length - 3;
   let randomFact = Math.floor(Math.random() * totalFacts) + 1;
-  // const dangerFactsLength = Object.keys(waterFacts.danger).length;
-  // let dangerFacts = Math.ceil(Math.random() * dangerFactsLength);
-  // console.log(dangerFacts);
+
   if (waterDrank > waterTarget) {
     const dangerFactsLength = Object.keys(waterFacts.danger).length;
     let dangerFacts = Math.ceil(Math.random() * dangerFactsLength);
@@ -272,22 +268,25 @@ const displayFacts = function () {
 
 activeCup.addEventListener("click", (e) => {
   let html = `
+  <div class="log__history-cup-wrapper">
   <div class="log__history-cup">
   <img src="./images/cup-${
     initialSizes.includes(selectedCup) ? selectedCup : "customise"
   }.svg " alt="" />
-      <span class="log__history-quantity">${e.target.textContent}</span>
-  <span class="log__history-time">05:05PM</span>
-  <span class="log__history-options">
-    <i
-      class="fa-solid fa-ellipsis-vertical log__history-icon"
-    ></i>
-  </span>
-  <div class="log__history-cta">
+  <span class="log__history-quantity">${selectedCup} ml</span>
+    <span class="log__history-time">05:05PM</span>
+    <span class="log__history-options">
+      <i
+        class="fa-solid fa-ellipsis-vertical log__history-icon"
+      ></i>
+    </span>
+  </div>
+  <div class="log__history-cta" data-size = "${selectedCup}">
     <span class="log__history-edit">Edit</span>
     <span class="log__history-delete">Delete</span>
   </div>
 </div>`;
+
   cupsHistoryContainer.insertAdjacentHTML("afterbegin", html);
   displayFacts();
 });
@@ -301,15 +300,32 @@ popupContainer.addEventListener("click", (e) => {
   }
 });
 
-cupsHistoryContainer.addEventListener("click", (e) => {
-  const cupsHistoryCTA = document.querySelector(".log__history-cta");
-  if (e.target.classList.contains("log__history-icon")) {
-    cupsHistoryCTA.style.opacity = "1";
-  }
-  if (e.target.classList.contains("log__history-delete")) {
-    waterDrank = waterDrank - selectedCup;
-    calcWaterDrank(e);
-  }
+cupsHistoryContainer.addEventListener("mouseenter", (e) => {
+  const cupsHistoryIcons = document.querySelectorAll(".log__history-icon");
+  const cupsHistoryCTA = document.querySelectorAll(".log__history-cta");
+  cupsHistoryIcons.forEach((icon, i) => {
+    icon.addEventListener("click", (e) => {
+      cupsHistoryCTA.forEach((cta) => (cta.style.display = "none"));
+      if (icon.classList.contains("log__history-icon")) {
+        cupsHistoryCTA.forEach((cta, idx) => {
+          if (i === idx) {
+            cta.style.display = "flex";
+            cta.addEventListener("click", (e) => {
+              if (e.target.classList.contains("log__history-delete")) {
+                e.stopImmediatePropagation();
+                let deleted = Number(
+                  e.target.closest(".log__history-cta").dataset.size
+                );
+                waterDrank -= deleted;
+                calcWaterDrank(e);
+                e.target.parentElement.parentElement.remove();
+              }
+            });
+          }
+        });
+      }
+    });
+  });
 });
 
 // trying

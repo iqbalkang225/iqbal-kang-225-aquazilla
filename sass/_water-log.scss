@@ -131,72 +131,6 @@
     z-index: -1;
   }
 
-  &__water-bubble {
-    background: $color-primary-light;
-    position: absolute;
-
-    &--1 {
-      @include circle(0.8rem);
-      top: 90%;
-      left: 40%;
-      animation: bubble-up 15s ease-in-out infinite;
-    }
-    &--2 {
-      @include circle(1.3rem);
-      top: 90%;
-      left: 30%;
-      animation: bubble-up 10s ease-in-out infinite;
-    }
-    &--3 {
-      @include circle(4rem);
-      top: 100%;
-      left: 50%;
-      animation: bubble-up 12s ease-in-out infinite;
-    }
-    &--4 {
-      @include circle(1rem);
-      top: 80%;
-      left: 60%;
-      animation: bubble-up 18s ease-in-out infinite;
-    }
-    &--5 {
-      @include circle(2rem);
-      top: 80%;
-      left: 20%;
-      animation: bubble-up 16s ease-in-out infinite;
-    }
-    &--6 {
-      @include circle(2rem);
-      top: 80%;
-      left: 50%;
-      animation: bubble-up 15s ease-in-out infinite;
-    }
-    &--7 {
-      @include circle(2rem);
-      top: 90%;
-      left: 60%;
-      animation: bubble-up 20s ease-in-out infinite;
-    }
-    &--8 {
-      @include circle(2rem);
-      top: 80%;
-      left: 20%;
-      animation: bubble-up 24s ease-in-out infinite;
-    }
-    &--9 {
-      @include circle(2rem);
-      top: 80%;
-      left: 20%;
-      animation: bubble-up 19s ease-in-out infinite;
-    }
-    &--10 {
-      @include circle(2rem);
-      top: 80%;
-      left: 20%;
-      animation: bubble-up 22s ease-in-out infinite;
-    }
-  }
-
   &__water {
     position: relative;
     z-index: 100;
@@ -291,10 +225,11 @@
 
   // log right section styles
   &__history-container {
-    background: $color-accent;
-
+    background-color: $color-accent;
+    position: relative;
     border-radius: 1rem;
     padding: 3rem;
+    overflow: hidden;
 
     @include respond(680px) {
       margin-bottom: 0;
@@ -313,6 +248,8 @@
     margin-bottom: 3rem;
     font-size: 1.8rem;
     color: $color-accent;
+    position: relative;
+    z-index: 2;
 
     @include d-flex(row);
   }
@@ -321,11 +258,12 @@
     font-weight: 400;
     padding: 1.2rem;
     flex: 1 0;
+    cursor: pointer;
 
     @include d-flex(row);
 
     &:hover {
-      outline: 2px solid $color-primary;
+      color: $color-primary;
     }
   }
 
@@ -348,10 +286,14 @@
     }
   }
 
-  &__history-cup {
+  &__history-cup-wrapper {
     position: relative;
+  }
+
+  &__history-cup {
     padding: 0.5rem 5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.4rem;
+    z-index: 100;
     @include d-flex(row);
 
     &:last-child {
@@ -378,22 +320,28 @@
   }
 
   &__history-cta {
-    // background: $color-background;
+    background: $color-background;
     position: absolute;
-    right: 0;
+    right: 14%;
     top: 80%;
     font-size: 1rem;
-    transform: translateX(-100%);
-    opacity: 0;
-    @include d-flex(column);
+
+    display: none;
+    flex-direction: column;
     align-items: stretch;
-    box-shadow: 0 0 10px 2px rgba($color-background, 0.2);
-    // z-index: 100;
+    box-shadow: 0 0px 10px rgba($color-background, 0.5);
+    z-index: 200;
 
     & span {
       border-bottom: 1.5px solid $color-primary;
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1.5rem;
       cursor: pointer;
+      color: $color-accent;
+      transition: all 0.2s linear;
+    }
+
+    & span:hover {
+      color: $color-primary;
     }
   }
 
@@ -403,6 +351,73 @@
 
   &__history-time {
     margin-right: 3rem;
+  }
+
+  &__water-bubble {
+    background: rgba($color-primary-light, 0.25);
+    position: absolute;
+    z-index: 1;
+
+    &--1 {
+      @include circle(0.8rem);
+      left: 40%;
+      top: 100%;
+      animation: bubble-up 35s ease-in-out 5s infinite;
+    }
+    &--2 {
+      @include circle(1.3rem);
+      left: 30%;
+      top: 100%;
+      animation: bubble-up 29s ease-in-out 1s infinite;
+    }
+    &--3 {
+      @include circle(4rem);
+      left: 80%;
+      top: 100%;
+      animation: bubble-up 30s ease-in-out 3s infinite;
+    }
+    &--4 {
+      @include circle(1rem);
+      left: 60%;
+      top: 100%;
+      animation: bubble-up 25s ease-in-out infinite;
+    }
+    &--5 {
+      @include circle(2rem);
+      left: 20%;
+      top: 100%;
+      animation: bubble-up 30s ease-in-out 10s infinite;
+    }
+    &--6 {
+      @include circle(2rem);
+      left: 50%;
+      top: 100%;
+      animation: bubble-up 22s ease-in-out infinite;
+    }
+    &--7 {
+      @include circle(2rem);
+      left: 60%;
+      top: 100%;
+      animation: bubble-up 29s ease-in-out 7s infinite;
+    }
+    &--8 {
+      @include circle(2rem);
+      left: 30%;
+      top: 100%;
+      animation: bubble-up 24s ease-in-out 12s infinite;
+    }
+    &--9 {
+      @include circle(2rem);
+      left: 40%;
+      top: 100%;
+      animation: bubble-up 19s ease-in-out 6s infinite;
+    }
+    &--10 {
+      @include circle(2rem);
+      left: 10%;
+      top: 100%;
+      animation: bubble-up 22s ease-in-out infinite;
+    }
   }
 
   &__droplet-container {
