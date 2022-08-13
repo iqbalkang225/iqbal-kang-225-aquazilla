@@ -259,13 +259,16 @@ const displayFacts = function () {
   if (waterDrank > waterTarget) {
     const dangerFactsLength = Object.keys(waterFacts.danger).length;
     let dangerFacts = Math.ceil(Math.random() * dangerFactsLength);
+    dropletMessageEl.style.color = "#ff5a83";
     dropletMessageEl.textContent = waterFacts.danger[`fact${dangerFacts}`];
-  } else if (waterDrank >= waterTarget)
+  } else if (waterDrank >= waterTarget) {
     dropletMessageEl.textContent = waterFacts[`warning`];
-  else if (waterTarget - waterDrank <= 200)
+  } else if (waterTarget - waterDrank <= 200)
     dropletMessageEl.textContent = waterFacts["watch-level"];
-  else if (waterDrank < waterTarget)
+  else if (waterDrank < waterTarget) {
     dropletMessageEl.textContent = waterFacts[`fact${randomFact}`];
+    dropletMessageEl.style.color = "#272727";
+  }
 };
 
 activeCup.addEventListener("click", (e) => {
