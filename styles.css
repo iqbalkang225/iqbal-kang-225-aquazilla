@@ -41,6 +41,10 @@ button {
   100% {
     top: -20%; } }
 
+@keyframes pulse {
+  100% {
+    transform: scale(1.1); } }
+
 #log {
   background-color: #101937;
   min-height: 100vh;
@@ -177,7 +181,12 @@ button {
 .log__water--drank {
   color: #00a9a5;
   position: relative;
-  z-index: 100; }
+  z-index: 100;
+  display: inline-block; }
+
+.log__pulse-water {
+  color: #ff5a83 !important;
+  animation: pulse 0.75s linear alternate infinite; }
 
 .log__water--text {
   margin-top: 0.5rem;

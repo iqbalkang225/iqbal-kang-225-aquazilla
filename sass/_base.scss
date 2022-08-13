@@ -93,3 +93,9 @@ button {
     top: -20%;
   }
 }
+
+@keyframes pulse {
+  100% {
+    transform: scale(1.1);
+  }
+}

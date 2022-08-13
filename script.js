@@ -113,9 +113,11 @@ const calcWaterDrank = function (e) {
     waterTargetEl.parentElement.nextElementSibling.style.color = "#272727";
   }
   if (waterDrank > waterTarget) {
+    waterDrankEl.classList.add("log__pulse-water");
     guageFill.style.transform = `rotate(${180}deg)`;
   } else {
     guageFill.style.transform = `rotate(${rotation}deg)`;
+    waterDrankEl.classList.remove("log__pulse-water");
   }
   waterDrankEl.textContent = `${waterDrank} `;
 };

@@ -155,6 +155,12 @@
     color: $color-primary;
     position: relative;
     z-index: 100;
+    display: inline-block;
+  }
+
+  &__pulse-water {
+    color: rgb(255, 90, 131) !important;
+    animation: pulse 0.75s linear alternate infinite;
   }
 
   &__water--text {
