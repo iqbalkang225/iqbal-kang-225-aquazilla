@@ -1,19 +1,15 @@
 // Variable
-$color-background: #eeeeee;
-$color-primary: #0094ff;
-$color-primary-light: #94cdf6;
-$color-gray: #6c6b6b;
-$color-gray-light: #bfbfbf;
-$color-gray-lighter: #d9d9d9;
-$color-white: #ffffff;
-$color-white-dark: #f0f0f0;
-$color-black: #000000;
+$color-background: #101937;
+$color-primary: #00a9a5;
+$color-primary-light: #66cbc9;
+$color-accent: #fbf7e5;
+$color-gray: #272727;
 
 $font-weight-medium: 600;
 
 $padding-section: 5rem 0;
 
-$box-shadow: 0px 0px 10px 2px rgba($color-gray, 0.25);
+$box-shadow: 0px 0px 10px 2px rgba($color-primary, 0.25);
 
 // phone - max-width: 600px;
 
@@ -53,7 +49,6 @@ html {
 
 body {
   height: 100vh;
-  background: red;
   color: $color-gray;
   font-size: 1.4rem;
   font-family: "Inter", sans-serif;
@@ -78,8 +73,18 @@ button {
 
 @keyframes wave {
   50% {
-    left: -80%;
-    // bottom: -128%;
+    left: -90%;
+  }
+}
+
+@keyframes animate-water {
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    top: -200%;
   }
 }
 

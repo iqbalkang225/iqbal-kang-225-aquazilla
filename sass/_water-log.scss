@@ -1,368 +1,3 @@
-// .log {
-//   &--left {
-//     height: 100vh;
-//     grid-column: full-start / col-end 5;
-//     padding: 3rem 0;
-//     grid-template-rows: min-content 1fr min-content;
-//     row-gap: 6rem;
-
-//     display: grid;
-
-//     @include respond(tab-land) {
-//       grid-template-rows: min-content 240px min-content;
-//     }
-
-//     @include respond(tab-mid) {
-//       grid-template-rows: min-content 200px min-content;
-//     }
-
-//     @include respond(tab-port) {
-//       height: auto;
-//       grid-column: full-start / full-end;
-//       grid-template-rows: min-content 200px min-content;
-//     }
-
-//     @include respond(phone) {
-//       grid-template-rows: min-content 150px min-content;
-//     }
-//   }
-
-//   // User weight styles
-//   &__weight-container {
-//     text-align: center;
-//     // border: 2px solid pink;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//   }
-
-//   &__weight-outline {
-//     border: 2px solid $color-gray;
-//     height: 7rem;
-//     width: 7rem;
-//     border-radius: 50%;
-//     margin-bottom: 3.6rem;
-
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//   }
-
-//   &__weight-value {
-//     color: $color-primary;
-//     font-size: 2.2rem;
-//     font-weight: 600;
-//   }
-
-//   &__weight-lbs {
-//     font-size: 1.4rem;
-//   }
-
-//   &__slider {
-//     appearance: none;
-//     width: 50%;
-
-//     &::-webkit-slider-runnable-track {
-//       background: $color-gray;
-//       height: 0.25rem;
-//     }
-
-//     &::-webkit-slider-thumb {
-//       appearance: none;
-//       height: 3.6rem;
-//       border-radius: 1rem;
-//       background: $color-gray;
-//       width: 1.6rem;
-//       transform: translateY(-50%);
-//       box-shadow: 0 5px 6px rgba($color-gray, 0.5);
-//       cursor: pointer;
-//     }
-//   }
-
-//   // Water container styles
-
-//   &__water-container {
-//     position: relative;
-
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//   }
-
-//   &__water-jug {
-//     height: 20vw;
-//     width: 20vw;
-//     background: $color-white;
-//     border-radius: 50%;
-//     position: absolute;
-//     top: 12%;
-//     box-shadow: $box-shadow;
-//     font-size: 2.4rem;
-
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-
-//     @include respond(tab-port) {
-//       top: 11%;
-
-//       height: 26vw;
-//       width: 26vw;
-//     }
-//   }
-
-//   &__water--drank {
-//     color: $color-primary;
-//   }
-
-//   &__water--text {
-//     margin-top: 0.5rem;
-//     font-size: 1.4rem;
-//     text-transform: capitalize;
-//   }
-
-//   &__drop--sad {
-//     position: absolute;
-//     left: -16%;
-//     top: 52%;
-
-//     @include respond(phone) {
-//       left: -13%;
-//       top: 50%;
-//     }
-
-//     svg {
-//       @include respond(phone) {
-//         width: 15px;
-//         height: 22px;
-//       }
-//     }
-//   }
-
-//   &__drop--happy {
-//     position: absolute;
-//     right: -16%;
-//     top: 52%;
-
-//     @include respond(phone) {
-//       top: 50%;
-//       right: -14%;
-//     }
-
-//     svg {
-//       @include respond(phone) {
-//         width: 15px;
-//         height: 22px;
-//       }
-//     }
-//   }
-
-//   &__select-container {
-//     height: 6rem;
-//     width: 6rem;
-//     background-color: $color-white;
-//     border-radius: 50%;
-//     position: absolute;
-//     right: -20%;
-//     bottom: 0;
-//     box-shadow: $box-shadow;
-//     color: $color-primary;
-//     cursor: pointer;
-
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-
-//     @include respond(tab-land) {
-//       right: -30%;
-//     }
-
-//     @include respond(tab-mid) {
-//       right: -40%;
-//     }
-
-//     @include respond(tab-port) {
-//       right: -20%;
-//     }
-
-//     @include respond(phone) {
-//       right: -30%;
-//     }
-//   }
-
-//   &__select-icon {
-//     height: 3rem;
-//     width: 3rem;
-//     background-color: $color-white;
-//     position: absolute;
-//     bottom: -10%;
-//     border-radius: 50%;
-//     right: -10%;
-//     font-size: 1.4rem;
-
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//   }
-//   &__add-container {
-//     align-self: end;
-//     justify-self: center;
-//     width: 50%;
-//     position: relative;
-
-//     display: grid;
-//     grid-template-columns: 1fr 80% 1fr;
-
-//     i {
-//       color: $color-primary;
-//       position: relative;
-//       z-index: 100;
-//     }
-
-//     button {
-//       background: none;
-//       outline: none;
-//       border: none;
-//       cursor: pointer;
-//       color: inherit;
-//       font-size: 1.2rem;
-//     }
-
-//     .active-cup {
-//       background-color: $color-white;
-//       padding: 1rem 2rem;
-//       border-radius: 2rem;
-//       font-size: 1.4rem;
-//       color: $color-primary;
-//       box-shadow: 0px 0px 5px rgba($color-gray, 0.25);
-//     }
-//   }
-
-//   &__cups-container {
-//     // overflow: hidden;
-//   }
-
-//   &__cups {
-//     display: flex;
-//     transition: all 0.2s linear;
-//   }
-
-//   &__cup-size {
-//     flex: 1 0 33.3%;
-//   }
-
-//   &__popup-container {
-//     width: 50vw;
-//     height: 50vh;
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     background-color: $color-white;
-//     border-radius: 2rem;
-//     z-index: 2;
-//     padding: 2rem;
-//     font-size: 1.4rem;
-
-//     display: none;
-//   }
-
-//   &__popup-title {
-//     margin-bottom: 1rem;
-//   }
-
-//   &__popup-cups {
-//     display: grid;
-//     grid-template-columns: repeat(3, 1fr);
-//     grid-template-rows: repeat(3, 3rem);
-//     gap: 2rem;
-//     margin-bottom: 1rem;
-//     place-items: center;
-//   }
-
-//   &__popup-btns {
-//     text-align: right;
-//   }
-
-//   &__popup-ok,
-//   &__popup-cancel {
-//     cursor: pointer;
-//     background: none;
-//     border: none;
-//     outline: none;
-//     color: inherit;
-//   }
-
-//   &__popup-ok {
-//     color: $color-primary;
-//     margin-left: 1rem;
-//   }
-
-//   &__overlay {
-//     width: 100vw;
-//     height: 100vh;
-//     background-color: rgba(0, 0, 0, 0.9);
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     display: none;
-//   }
-
-//   &--right {
-//     background: blue;
-//     height: 100vh;
-
-//     grid-column: col-start 6 / full-end;
-
-//     @include respond(tab-port) {
-//       grid-column: full-start / full-end;
-//     }
-//   }
-// }
-
-// // Water guage styles
-// .guage {
-//   width: 25vw;
-//   // border: 2px solid red;
-
-//   @include respond(tab-port) {
-//     width: 31vw;
-//   }
-
-//   &__body {
-//     height: 0;
-//     padding-bottom: 50%;
-//     border-top-left-radius: 100% 200%;
-//     border-top-right-radius: 100% 200%;
-//     background-color: $color-gray;
-//     position: relative;
-//     overflow: hidden;
-//   }
-
-//   &__fill {
-//     height: 100%;
-//     width: 100%;
-//     background-color: $color-primary;
-//     position: absolute;
-//     top: 100%;
-//     transform-origin: top center;
-//     transition: all 0.2s ease-in;
-//   }
-
-//   &__cover {
-//     width: 95%;
-//     background-color: $color-background;
-//     height: 190%;
-//     border-radius: 50%;
-//     position: absolute;
-//     top: 5%;
-//     left: 50%;
-//     transform: translateX(-50%);
-//   }
-// }
-
 #log {
   background-color: $color-background;
   min-height: 100vh;
@@ -375,13 +10,10 @@
 .log {
   &--left,
   &--right {
-    padding: 4rem;
-
-    display: grid;
-    place-content: center;
+    padding: 2rem;
 
     @include respond(680px) {
-      padding: 2rem 0 0;
+      // padding: 2rem 0 0;
     }
   }
 
@@ -390,6 +22,10 @@
 
     @include respond(680px) {
       grid-template-columns: 1fr 1fr;
+    }
+
+    @include respond(1020px) {
+      grid-template-columns: 1.5fr 1fr;
     }
   }
 
@@ -400,7 +36,7 @@
   }
 
   &__weight-outline {
-    border: 2px solid $color-gray;
+    border: 2px solid $color-accent;
     margin-bottom: 3.6rem;
 
     @include circle(7rem);
@@ -413,20 +49,16 @@
     font-weight: $font-weight-medium;
   }
 
+  &__weight-lbs {
+    color: $color-accent;
+  }
+
   &__slider {
     appearance: none;
-    width: 140%;
-
-    @include respond(680px) {
-      width: 100%;
-    }
-
-    @include respond(760px) {
-      width: 160%;
-    }
+    width: 80%;
 
     &::-webkit-slider-runnable-track {
-      background: $color-gray;
+      background: $color-accent;
       height: 0.25rem;
     }
 
@@ -434,10 +66,9 @@
       appearance: none;
       height: 3.6rem;
       border-radius: 1rem;
-      background: $color-gray;
+      background: $color-accent;
       width: 1.6rem;
       transform: translateY(-50%);
-      box-shadow: 0 5px 6px rgba($color-gray, 0.5);
       cursor: pointer;
     }
   }
@@ -453,8 +84,8 @@
   }
 
   &__water-jug {
-    background: $color-white;
-    box-shadow: $box-shadow;
+    background: $color-accent;
+
     font-size: 2.4rem;
     transform-style: preserve-3d;
     position: relative;
@@ -472,7 +103,6 @@
   }
 
   &__water-wave {
-    // overflow: hidden;
     @include circle(100%);
 
     position: absolute;
@@ -482,16 +112,20 @@
   &__water-wave svg:first-child {
     width: 200%;
     position: absolute;
-    left: -20%;
-    bottom: -130%;
+    left: -10%;
+    top: 100%;
+    transition: all 0.25s ease-in-out;
     animation: wave 5s ease-in-out infinite;
+    z-index: 1;
+    fill: $color-primary;
   }
 
   &__water-wave svg:nth-child(2) {
+    transition: all 0.35s ease-in-out;
     width: 200%;
     position: absolute;
-    left: -20%;
-    bottom: -130%;
+    left: -10%;
+    top: 100%;
     animation: wave 7s ease-in-out 0.5s infinite;
     fill: $color-primary-light;
     z-index: -1;
@@ -563,23 +197,47 @@
     }
   }
 
+  &__water {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__water--animate {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    font-size: 1.2rem;
+    opacity: 0;
+  }
+
+  &__animate-water {
+    animation: animate-water 1.25s ease-out;
+  }
+
   &__water--drank {
     color: $color-primary;
+    position: relative;
+    z-index: 100;
   }
 
   &__water--text {
     margin-top: 0.5rem;
     font-size: 1.4rem;
     text-transform: capitalize;
+    position: relative;
+    z-index: 100;
   }
 
   &__select-container {
-    background-color: $color-white;
+    background-color: $color-accent;
     position: absolute;
     right: -1em;
     bottom: 0;
-    box-shadow: $box-shadow;
-    color: $color-primary;
+
+    color: $color-background;
     cursor: pointer;
 
     @include circle(18%);
@@ -587,12 +245,11 @@
   }
 
   &__select-icon {
-    background-color: $color-white;
+    background-color: inherit;
     position: absolute;
     bottom: -0.2em;
     right: -0.5em;
     font-size: 1rem;
-    box-shadow: 0px 5px 10px rgba($color-gray, 0.25);
     @include d-flex(row);
     @include circle(40%);
   }
@@ -611,22 +268,33 @@
   &__add {
     flex: 0 1 50%;
   }
+
   &__active-cup {
-    background-color: $color-white;
+    background-color: $color-accent;
     padding: 1rem 2rem;
     border-radius: 2rem;
-    color: $color-primary;
-    box-shadow: 0px 2px 2px rgba($color-gray, 0.25);
+    color: $color-background;
     width: 100%;
+
+    @include d-flex(row);
+
+    & > * {
+      pointer-events: none;
+    }
+
+    img {
+      width: 25px;
+      height: 25px;
+      margin-right: 0.5rem;
+    }
   }
 
   // log right section styles
   &__history-container {
-    background: $color-white-dark;
-    box-shadow: $box-shadow;
+    background: $color-accent;
+
     border-radius: 1rem;
     padding: 3rem;
-    margin-bottom: 2rem;
 
     @include respond(680px) {
       margin-bottom: 0;
@@ -635,15 +303,16 @@
   }
 
   &__history-title {
-    color: $color-black;
+    color: $color-background;
     margin-bottom: 2rem;
   }
 
   &__history-dates {
-    background: $color-gray-lighter;
+    background: $color-background;
     border-radius: 0.5rem;
     margin-bottom: 3rem;
     font-size: 1.8rem;
+    color: $color-accent;
 
     @include d-flex(row);
   }
@@ -656,11 +325,31 @@
     @include d-flex(row);
 
     &:hover {
-      outline: 2px solid $color-black;
+      outline: 2px solid $color-primary;
+    }
+  }
+
+  &__history-cups {
+    height: 50vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      appearance: none;
+      width: 0.25rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $color-background;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $color-primary;
     }
   }
 
   &__history-cup {
+    position: relative;
     padding: 0.5rem 5rem;
     margin-bottom: 2rem;
     @include d-flex(row);
@@ -676,18 +365,40 @@
     @include respond(1020px) {
       padding: 0.5rem 5rem;
     }
+
+    & img {
+      margin-right: 1rem;
+      height: 25px;
+      width: 25px;
+    }
+
+    & i {
+      cursor: pointer;
+    }
   }
 
-  &__selected-cup {
-    margin-right: 1rem;
-    font-size: 2.6rem;
-    color: $color-primary;
+  &__history-cta {
+    // background: $color-background;
+    position: absolute;
+    right: 0;
+    top: 80%;
+    font-size: 1rem;
+    transform: translateX(-100%);
+    opacity: 0;
+    @include d-flex(column);
+    align-items: stretch;
+    box-shadow: 0 0 10px 2px rgba($color-background, 0.2);
+    // z-index: 100;
+
+    & span {
+      border-bottom: 1.5px solid $color-primary;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
   }
 
   &__history-quantity {
     margin-right: auto;
-    color: $color-black;
-    // font-size: 2rem;
   }
 
   &__history-time {
@@ -696,17 +407,21 @@
 
   &__droplet-container {
     @include d-flex(row);
-    // border: 2px solid red;
+    margin-bottom: 2rem;
   }
 
   &__droplet-text {
-    background: $color-primary-light;
+    background: $color-accent;
     padding: 2rem 4rem;
     border-radius: 1.6rem;
     margin-right: 4rem;
     position: relative;
-    color: $color-black;
-    font-size: 1.2rem;
+    color: $color-background;
+    font-weight: 800;
+    letter-spacing: 0.25px;
+    font-size: 1rem;
+    flex: 1;
+    text-align: center;
 
     &::after {
       content: "";
@@ -721,14 +436,14 @@
     }
   }
 
-  &__droplet svg {
+  &__droplet img {
     width: 6rem;
   }
 
   // Popup Content styles
 
   &__popup-container {
-    background-color: $color-white;
+    background-color: $color-accent;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -736,11 +451,10 @@
     padding: 4rem;
     border-radius: 1rem;
     z-index: 100;
-    color: $color-black;
-
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
+    // color: $color-black;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.15s ease-out;
   }
 
   &__popup-cups {
@@ -761,9 +475,11 @@
       height: 30px;
       width: 30px;
       margin-bottom: 0.5rem;
+      pointer-events: none;
     }
 
     p {
+      pointer-events: none;
       font-size: 1rem;
     }
   }
@@ -772,10 +488,10 @@
     width: 60%;
     height: 4px;
     border-radius: 50%;
-    background-color: rgba($color-gray, 0.25);
     margin: 0 0 0.5rem;
     transition: all 0.1 0.05s linear;
     opacity: 0;
+    pointer-events: none;
   }
 
   &__popup-btns {
@@ -791,11 +507,64 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-color: $color-black;
+    background-color: rgba($color-background, 0.9);
     width: 100%;
     height: 100%;
     z-index: 1;
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.15s ease-out;
+  }
+
+  &__custom-cup-container {
+    background-color: $color-accent;
+    padding: 2rem;
+    border-radius: 1rem;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    opacity: 0;
+    z-index: 100;
+    transition: all 0.15s ease-out;
+  }
+
+  &__custom-input-container {
+    display: flex;
+    align-items: end;
+    margin: 2rem 0;
+
+    & img {
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+  &__custom-value {
+    margin: 0 0.5rem 0 1rem;
+    appearance: none;
+    outline: none;
+    border: none;
+    width: 20%;
+    border-bottom: 1px solid $color-primary;
+    text-align: center;
+    color: $color-primary;
+    background: none;
+  }
+
+  &__custom-btns {
+    text-align: right;
+  }
+
+  &__custom-btn--ok {
+    margin-left: 1rem;
+    color: $color-primary;
+  }
+
+  &__show-popup {
+    opacity: 1;
+    visibility: visible;
   }
 }
 
@@ -811,7 +580,7 @@
     padding-bottom: 50%;
     border-top-left-radius: 100% 200%;
     border-top-right-radius: 100% 200%;
-    background-color: $color-gray-light;
+    background-color: $color-accent;
     position: relative;
     overflow: hidden;
   }
@@ -820,6 +589,7 @@
     height: 100%;
     width: 100%;
     background-color: $color-primary;
+
     position: absolute;
     top: 100%;
     transform-origin: top center;
@@ -843,7 +613,7 @@
   height: 100vh;
   width: 100%;
   background-color: green;
-  color: white !important;
+  color: acc$color-accent !important;
   font-size: 1.6rem;
   font-weight: bold;
 }
