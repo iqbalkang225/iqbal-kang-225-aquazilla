@@ -257,7 +257,7 @@ button {
   background-color: #fbf7e5;
   position: relative;
   border-radius: 1rem;
-  padding: 3rem;
+  padding: 2rem 1rem;
   overflow: hidden; }
   @media (min-width: 680px) {
     .log__history-container {
@@ -309,7 +309,7 @@ button {
   position: relative; }
 
 .log__history-cup {
-  padding: 0.5rem 5rem;
+  padding: 0.5rem 2rem;
   margin-bottom: 1.4rem;
   z-index: 100;
   display: flex;
