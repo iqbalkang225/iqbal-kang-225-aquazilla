@@ -78,6 +78,10 @@ const selectCup = function () {
       cupsImg[i].style.transform = "translateY(-10px)";
       cupsShadow[i].style.opacity = "1";
       cupsSizeText[i].style.color = "#00a9a5";
+
+      cup.addEventListener('transitionend', () => {
+        closePopup(popupContainer);
+      })
     });
   });
   activeCupSpan.textContent = `${selectedCup} ml`;
@@ -96,14 +100,15 @@ const calcWaterDrank = function (e) {
   rotation = ((waterDrank / waterTarget) * 100 * 180) / 100;
   rise = ((waterDrank / waterTarget) * 100 * 100) / 100;
 
+  if (rise > 100) rise = 100;
   waterWave1.style.top = `${100 - rise}%`;
   waterWave2.style.top = `${100 - rise}%`;
 
   waterAnimateEl.textContent = `+${Number(
     e.target.dataset.size
   )} ml Well Done!`;
-  if (rise > 100) rise = 100;
-  else if (rise >= 70) {
+
+  if (rise >= 70) {
     waterTargetEl.style.color = "#fff";
   } else if (rise >= 50) {
     waterDrankEl.style.color = "#66cbc9";
@@ -144,26 +149,7 @@ const userWeight = function (e) {
 
 weightSliderEl.addEventListener("mousemove", userWeight);
 
-// const waterAmount = [355, 655, 203, 301, 4043, 509];
-
-// let counter = 0;
-// const cupSize = function () {
-//   cupsEl.style.transform = `translateX(-${counter}%)`;
-//   counter = counter + 33.3;
-// };
-
-// waterAmount.forEach((amount, i) => {
-//   let cupSize = document.createElement("button");
-//   cupSize.setAttribute("class", "log__cup-size");
-//   if (i === 1) cupSize.setAttribute("class", "active-cup");
-//   cupSize.textContent = `${amount}ml`;
-//   cupsEl.append(cupSize);
-// });
-
-// rightArrow.addEventListener("click", cupSize);
-
 const cupsContainer = document.querySelector(".log__popup-cups");
-// let cups = document.querySelectorAll(".log__popup-cup");
 const popupCancelBtn = document.querySelector(".log__popup-btn--cancel");
 const popupOkBtn = document.querySelector(".log__popup-btn--ok");
 const popupContainer = document.querySelector(".log__popup-container");

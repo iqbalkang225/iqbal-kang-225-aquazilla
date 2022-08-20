@@ -508,6 +508,7 @@
   &__popup-shadow {
     width: 60%;
     height: 4px;
+    background: rgba($color-gray, 0.2);
     border-radius: 50%;
     margin: 0 0 0.5rem;
     transition: all 0.1 0.05s linear;
