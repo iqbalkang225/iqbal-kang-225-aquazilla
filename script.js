@@ -79,9 +79,10 @@ const selectCup = function () {
       cupsShadow[i].style.opacity = "1";
       cupsSizeText[i].style.color = "#00a9a5";
 
-      cup.addEventListener('transitionend', () => {
+      cup.addEventListener("transitionend", () => {
         closePopup(popupContainer);
-      })
+        selectCup();
+      });
     });
   });
   activeCupSpan.textContent = `${selectedCup} ml`;
@@ -318,66 +319,3 @@ cupsHistoryContainer.addEventListener("mouseenter", (e) => {
     });
   });
 });
-
-// trying
-// const cupps = [50, 100, 150, 200, 250, 300];
-// const right = document.querySelector(".right");
-// const left = document.querySelector(".left");
-// const tryCups = document.querySelector(".try-cups");
-// // console.log(tryCups);
-// let counter = 0;
-// cupps.forEach((cupp, i) => {
-//   let cup = document.createElement("span");
-//   cup.setAttribute("class", "cupp");
-//   if (i === counter) cup.setAttribute("class", "cupp active-cupp");
-//   cup.textContent = cupp;
-//   tryCups.append(cup);
-// });
-
-// let firstNode = tryCups.childNodes[0].cloneNode(true);
-// let lastNode = tryCups.childNodes[cupps.length - 1].cloneNode(true);
-// firstNode.id = "firstNode";
-// lastNode.id = "lastNode";
-// tryCups.prepend(lastNode);
-// tryCups.append(firstNode);
-
-// const move = function () {
-//   let allCups = document.querySelectorAll(".cupp");
-//   if (counter < cupps.length) {
-//     counter++;
-//   } else {
-//     counter = 1;
-//   }
-//   allCups.forEach((cup) => {
-//     cup.classList.remove("active-cupp");
-//     cup.style.transform = `translateX(-${counter * 100}%)`;
-//   });
-
-//   allCups[counter + 1].classList.add("active-cupp");
-// };
-
-// const move2 = function () {
-//   let allCups = document.querySelectorAll(".cupp");
-//   if (counter > 0) {
-//     counter--;
-//   } else {
-//     counter = cupps.length - 1;
-//   }
-//   allCups.forEach((cup) => {
-//     cup.classList.remove("active-cupp");
-//     cup.style.transform = `translateX(-${(counter - 1) * 100}%)`;
-//   });
-
-//   allCups[counter].classList.add("active-cupp");
-// };
-
-// tryCups.addEventListener("transitionend", () => {
-//   console.log(tryCups.childNodes[counter + 1].id);
-//   if (tryCups.childNodes[counter + 1].id === "firstNode") {
-//     console.log("yes");
-//     tryCups.childNodes.forEach((cup) => (cup.style.transition = "none"));
-//   }
-// });
-
-// right.addEventListener("click", move);
-// left.addEventListener("click", move2);
